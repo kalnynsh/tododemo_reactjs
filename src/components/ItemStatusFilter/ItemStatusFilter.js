@@ -5,7 +5,7 @@ const ItemStatusFilter = () => {
     return (
         <div className="btn btn-group mt-0">
             <button type="button"
-                className="btn btn-outline-info"
+                className="btn btn-info"
             >
                 All
             </button>
