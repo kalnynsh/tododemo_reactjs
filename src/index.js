@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import TodoList from './components/TodoList/TodoList';
 import AppHeader from './components/Header/AppHeader';
 import SearchPanel from './components/Panel/SearchPanel';
+import ItemStatusFilter from './components/ItemStatusFilter/ItemStatusFilter';
+import './index.css';
 
 const App = () => {
     const getId = function () {
@@ -28,9 +30,12 @@ const App = () => {
     ];
 
     return (
-        <div>
-            <AppHeader />
-            <SearchPanel />
+        <div className="todo-app">
+            <AppHeader toDo={1} done={3}/>
+            <div className="top-panel d-flex">
+                <SearchPanel />
+                <ItemStatusFilter />
+            </div>
             <TodoList todos={todoData} />
         </div>
     );
