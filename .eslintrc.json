@@ -1,0 +1,17 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "es10": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 10,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "semi": "error"
+    }
+}
