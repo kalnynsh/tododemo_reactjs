@@ -5,19 +5,25 @@ import AppHeader from './components/Header/AppHeader';
 import SearchPanel from './components/Panel/SearchPanel';
 
 const App = () => {
+    const getId = function () {
+        return `f${(+(new Date()) + Math.random()*100).toString(16)}`;
+    };
 
     const todoData = [
         {
             content: 'Make breakfast',
-            important: false
+            important: false,
+            id: getId(),
         },
         {
             content: 'Learn DDD',
-            important: true
+            important: true,
+            id: getId(),
         },
         {
             content: 'Learn React',
-            important: false
+            important: false,
+            id: getId(),
         },
     ];
 
