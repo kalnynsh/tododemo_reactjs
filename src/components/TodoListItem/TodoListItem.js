@@ -1,80 +1,59 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './TodoListItem.css';
 
-export default class TodoListItem extends Component
-{
-    constructor() {
-        super();
+const TodoListItem = ({
+                        content,
+                        done,
+                        important,
+                        onDeleted,
+                        onToggleImportant,
+                        onToggleDone
+                    }) => {
 
-        this.state = {
-            done: false,
-            important: false,
-        };
+    const spStyle = {
+        color: important ? 'steelblue' : 'black',
+        fontWeight: important ? 'bold' : 'normal',
+    };
 
-        this.onLabelClick = () => {
-            this.setState(({done}) => {
-                return {
-                    done: !done,
-                };
-            });
-        };
+    let classNames = 'todo-list-item';
 
-        this.onImportantClick = () => {
-            this.setState(({important}) => {
-                return {
-                    important: !important,
-                };
-            });
-        };
+    if (done) {
+        classNames += ' done';
     }
 
-    render() {
-        const { content, onDelete } = this.props;
-        const { done, important } = this.state;
+    if (important) {
+        classNames += ' important';
+    }
 
-        const spStyle = {
-            color: important ? 'steelblue' : 'black',
-            fontWeight: important ? 'bold' : 'normal',
-        };
-
-        let classNames = 'todo-list-item';
-
-        if (done) {
-            classNames += ' done';
-        }
-
-        if (important) {
-            classNames += ' important';
-        }
-
-        return (
+    return (
+        <span
+            className={classNames}
+        >
             <span
-                className={classNames}
+                className="todo-list-item-label"
+                style={ spStyle }
+                onClick={ onToggleDone }
             >
-                <span
-                    className="todo-list-item-label"
-                    style={spStyle}
-                    onClick={ this.onLabelClick }
-                >
-                    { content }
-                </span>
-
-                <button
-                    type="button"
-                    className="btn btn-outline-success btn-sm float-right"
-                    onClick={ this.onImportantClick }
-                >
-                    <i className="fa fa-exclamation"></i>
-                </button>
-
-                <button
-                    type="button"
-                    className="btn btn-outline-danger btn-sm float-right"
-                    onClick={onDelete}
-                >
-                    <i className="fa fa-trash-o"></i>
-                </button>
+                { content }
             </span>
-        );
-    }
+
+            <button
+                type="button"
+                className="btn btn-outline-success btn-sm float-right"
+                onClick={ onToggleImportant }
+            >
+                <i className="fa fa-exclamation"></i>
+            </button>
+
+            <button
+                type="button"
+                className="btn btn-outline-danger btn-sm float-right"
+                onClick={ onDeleted }
+            >
+                <i className="fa fa-trash-o"></i>
+            </button>
+        </span>
+    );
 }
+
+export default TodoListItem;
