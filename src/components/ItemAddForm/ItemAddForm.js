@@ -7,56 +7,41 @@ export default class ItemAddForm extends Component
         super();
 
         this.state = {
-            visible: true,
+            task: '',
         };
 
-        this.changeVisibility = () => {
-            this.setState(({visible}) => {
-                return {
-                    visible: !visible,
-                }
+        this.onInputChanged = (event) => {
+            this.setState({
+                task: event.target.value,
             });
         };
+
+        this.onSubmit = (event) => {
+            event.preventDefault();
+            this.props.onItemAdded(this.state.task);
+        }
     }
 
     render() {
-        const { onItemAdded } = this.props;
-        const {visible} = this.state;
-        const newContent = 'Learn AJAX';
-
-        const spStyle = {
-            color: 'black',
-            fontWeight: 'normal',
-        };
-
-        let classNames = 'todo-list-add-item';
-
-        if (!visible) {
-            classNames += ' hidden';
-        }
-
         return (
-            <div className="item-add-form">
-                <span
-                    className={classNames}
-                >
-                    <span
-                        className="todo-list-add-item-label"
-                        style={spStyle}
-                    >
-                        { newContent }
-                    </span>
+            <form
+                className="item-add-form d-flex"
+                onSubmit={this.onSubmit}
+            >
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Add item to list"
+                    onChange={this.onInputChanged}
+                />
 
-                    <button
-                        type="button"
-                        className="btn btn-outline-info btn-sm float-right"
-                        onClick={() => onItemAdded(newContent)}
-                        onChange={this.changeVisibility}
-                    >
-                        <i className="fa fa-plus-square"></i>
-                    </button>
-                </span>
-            </div>
+                <button
+                    type="submit"
+                    className="btn btn-outline-info btn-sm float-right"
+                >
+                    <i className="fa fa-plus-square"></i>
+                </button>
+            </form>
         );
     }
 }
