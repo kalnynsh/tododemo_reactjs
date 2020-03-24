@@ -19,6 +19,10 @@ export default class ItemAddForm extends Component
         this.onSubmit = (event) => {
             event.preventDefault();
             this.props.onItemAdded(this.state.task);
+
+            this.setState({
+                task: '',
+            });
         }
     }
 
@@ -33,6 +37,7 @@ export default class ItemAddForm extends Component
                     className="form-control"
                     placeholder="Add item to list"
                     onChange={this.onInputChanged}
+                    value={this.state.task}
                 />
 
                 <button
